@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "NsfwAuditGui (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "NsfwAuditGui (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
