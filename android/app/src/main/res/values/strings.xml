@@ -1,0 +1,77 @@
+<resources>
+    <string name="app_name">NSFWImageDetectionGGUF</string>
+    <string name="toolbar_title">NSFW Image Detection</string>
+    <string name="toolbar_subtitle">Local GGUF Offline Inference</string>
+    <string name="action_language">中 / EN</string>
+
+    <string name="label_model_status">Model Status</string>
+    <string name="status_checking_model">Checking model…</string>
+    <string name="status_incomplete_download">Model download incomplete. Tap Resume to continue.</string>
+    <string name="status_model_missing">Model not found. Download (~327 MB) or import locally.</string>
+    <string name="status_need_model">Please download or import the model first</string>
+    <string name="status_loading_model">Loading model…</string>
+    <string name="status_model_ready">Model ready · Backend %1$s · %2$d threads</string>
+    <string name="status_model_load_failed">Model load failed: %1$s</string>
+
+    <string name="btn_download">Download</string>
+    <string name="btn_resume_download">Resume</string>
+    <string name="btn_stop_download">Stop</string>
+    <string name="btn_import">Import Local</string>
+    <string name="btn_pick_folder">Select Image Folder to Scan</string>
+
+    <string name="status_stopping_download">Stopping download…</string>
+    <string name="dialog_cellular_title">Mobile Network Detected</string>
+    <string name="dialog_cellular_message">The model is ~327 MB. Wi-Fi is recommended. Continue anyway?</string>
+    <string name="dialog_continue">Continue</string>
+    <string name="dialog_cancel">Cancel</string>
+
+    <string name="status_downloading">Downloading model…</string>
+    <string name="progress_connecting">Connecting…</string>
+    <string name="status_download_failed">Download failed: %1$s</string>
+    <string name="status_retrying">Network interrupted, retrying (%1$d/%2$d)…</string>
+    <string name="status_download_paused">Download paused</string>
+    <string name="progress_paused_mb">Paused at %1$d MB · Tap Resume to continue</string>
+    <string name="progress_downloaded_mb">Downloaded %1$d MB</string>
+    <string name="progress_verifying_sha256">Verifying SHA256…</string>
+    <string name="progress_percent_mb">%1$d%%  (%2$d / %3$d MB)</string>
+    <string name="progress_mb_only">%1$d MB</string>
+
+    <string name="error_incomplete_file">Downloaded file is incomplete</string>
+    <string name="status_verifying_model">Verifying model…</string>
+    <string name="error_sha256_mismatch">SHA256 verification failed, please retry</string>
+    <string name="error_save_failed">Failed to save model</string>
+    <string name="error_connection_interrupted">Connection interrupted</string>
+
+    <string name="toast_only_gguf">Only .gguf model files are supported</string>
+    <string name="status_importing_model">Importing model…</string>
+    <string name="error_cannot_read_file">Cannot read the selected file</string>
+    <string name="error_not_gguf">Selected file is not a valid GGUF model</string>
+    <string name="error_file_too_small">File is too small to be a valid model</string>
+    <string name="error_import_sha256_mismatch">SHA256 mismatch with the published model</string>
+    <string name="status_import_failed">Import failed: %1$s</string>
+
+    <string name="label_threshold">Threshold: %1$.2f</string>
+    <string name="status_scanning_folder">Scanning folder…</string>
+    <string name="status_no_images_found">No images found in the selected folder</string>
+    <string name="status_scoring_progress">Scanning %1$d/%2$d: %3$s</string>
+    <string name="status_scoring_done">Scan complete, %1$d images total</string>
+    <string name="summary_format">%1$d total · %2$d NSFW · Threshold %3$.2f</string>
+
+    <string name="tab_safe">Safe (%1$d)</string>
+    <string name="tab_nsfw">NSFW (%1$d)</string>
+    <string name="badge_safe">Safe</string>
+    <string name="badge_nsfw">NSFW</string>
+    <string name="badge_failed">Failed</string>
+    <string name="badge_moved">Moved</string>
+
+    <string name="empty_title">No scan results yet</string>
+    <string name="empty_subtitle">Select an image folder to batch scan locally</string>
+    <string name="empty_category">No images in this category</string>
+
+    <string name="dialog_move_title">Move NSFW Images?</string>
+    <string name="dialog_move_message">Detected %1$d NSFW image(s). Move them to the app\'s private internal directory? Original files in the selected folder will be removed.</string>
+    <string name="dialog_move_confirm">Move</string>
+    <string name="status_moving_nsfw">Moving NSFW images (%1$d/%2$d)…</string>
+    <string name="status_move_done">Moved %1$d NSFW image(s) to internal directory</string>
+    <string name="status_move_partial">Moved %1$d image(s), %2$d failed</string>
+</resources>

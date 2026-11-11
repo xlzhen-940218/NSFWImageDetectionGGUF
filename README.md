@@ -5,8 +5,9 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Platform-Windows%2010%2F11-0078D6?logo=windows" alt="Platform" />
+  <img src="https://img.shields.io/badge/Platform-Windows%2010%2F11%20%7C%20Android-0078D6?logo=windows" alt="Platform" />
   <img src="https://img.shields.io/badge/.NET-9.0%20%7C%20WPF%20Fluent-512BD4?logo=dotnet" alt="Framework" />
+  <img src="https://img.shields.io/badge/Android-Material%203%20%7C%20JNI-3DDC84?logo=android" alt="Android" />
   <img src="https://img.shields.io/badge/ggml-Vulkan%20GPU%20%7C%20CPU-red?logo=vulkan" alt="Backend" />
   <img src="https://img.shields.io/badge/Model-ViT--B%2F16%20GGUF-orange" alt="Model" />
   <img src="https://img.shields.io/badge/GUI%20Size-1.4%20MB-brightgreen" alt="GUI Size" />
@@ -16,7 +17,7 @@
 一个高性能、极轻量、纯本地离线运行的 **NSFW 违规图像检测与自动隔离整理工具**。  
 基于 `Falconsai/nsfw_image_detection`（ViT-B/16 架构）GGUF 量化模型，通过 `ggml` Vulkan 原生硬件加速后端（兼容 NVIDIA / AMD / Intel 显卡，无 GPU 时自动回退 CPU），在毫秒级内完成批量审核，并将违规图片自动移动至专属隔离目录。
 
-提供 **超轻量 Windows 11 Fluent 桌面端 GUI 软件（单文件绿色版仅 1.4 MB）** 与 **格式化 C++ 命令行工具**。100% 离线隐私保障，绝无任何网络上传。
+提供 **超轻量 Windows 11 Fluent 桌面端 GUI 软件（单文件绿色版仅 1.4 MB）**、**格式化 C++ 命令行工具** 以及 **Android 原生客户端（Material Design 3 + ggml CPU 本地推理）**。100% 离线隐私保障，绝无任何网络上传。
 
 ---
 
@@ -37,6 +38,11 @@
   - 规范的英文标签输出（`[INIT]`, `[ITEM]`, `[PROGRESS]`, `[ACTION]`, `[SUMMARY]`）。
   - 支持 `--json` 逐行输出（NDJSON），自带 Windows 特殊路径转义，专为前端及自动化工作流设计。
   - 输出即时刷新（`fflush`），消除管道阻塞。
+- 📱 **Android 原生客户端（[`android/`](android/README.md)）**：
+  - 采用 **Material Design 3** 界面设计，支持浅色/深色主题与**中英文一键切换**。
+  - 通过 NDK/JNI 静态链接 `ggml-cpu` 实现手机端纯本地离线推理（支持 `arm64-v8a` / `x86_64`）。
+  - 支持**选择图片文件夹**（基于 SAF `OpenDocumentTree` 递归扫描）批量检测，**2 列缩略图宫格**搭配 **Safe / NSFW 分类 Tab** 展示，扫描完成后弹窗提示将 NSFW 图片自动隔离移动至应用私有内部目录。
+  - 支持在线断点续传下载或本地导入 `.gguf` 模型，实时拖动调整判定阈值（扫描期间自动收起以节省空间）。
 - 🛡️ **安全隔离机制**：
   - 自动创建并移动违规图片至 `NSFW/` 目录；
   - 自动处理重名文件冲突（自动递增序列命名，杜绝文件覆盖）；
@@ -66,6 +72,10 @@ NSFWImageDetectionGGUF/
 │   ├── ggml/                   # ggml 核心张量运算库 (含 Vulkan/CPU 后端)
 │   ├── CMakeLists.txt          # CMake 构建工程脚本
 │   └── nsfw_audit.cpp          # 审核引擎源码 (支持英文格式化与 JSON 流式输出)
+├── android/                    # Android 原生客户端 (Kotlin + Material Design 3 + JNI/ggml)
+│   ├── app/src/main/cpp/       # Android JNI 与 C++ 推理封装 (复用 _nsfw_tool/ggml)
+│   ├── app/src/main/java/      # Kotlin 界面逻辑与 SAF 文件夹批量扫描
+│   └── README.md               # Android 客户端详细说明文档
 ├── image-test/                 # 测试图片文件夹 (含合规壁纸与测试用例)
 ├── nsfw_audit.py               # Python 原型参考脚本
 ├── launch_gui.bat              # GUI 桌面程序一键启动脚本
@@ -182,6 +192,18 @@ cd /d %~dp0
 dotnet publish NsfwAuditGui\NsfwAuditGui.csproj -c Release -r win-x64 --self-contained false -p:PublishSingleFile=true -o publish
 ```
 输出产物直接位于 `publish\NsfwAuditGui.exe`，单文件大小仅约 **1.4 MB**。
+
+### 3. 编译 Android 客户端
+
+```bash
+cd android
+.\gradlew.bat :app:assembleDebug
+```
+需安装 Android SDK 与 NDK（支持 `arm64-v8a`、`x86_64`），详细说明请参阅 [android/README.md](android/README.md)。
+
+<p align="center">
+  <img src="android/screenshots/app_preview.png" width="320" alt="Android 客户端预览" />
+</p>
 
 ---
 

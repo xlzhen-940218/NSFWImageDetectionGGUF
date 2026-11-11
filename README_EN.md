@@ -5,8 +5,9 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Platform-Windows%2010%2F11-0078D6?logo=windows" alt="Platform" />
+  <img src="https://img.shields.io/badge/Platform-Windows%2010%2F11%20%7C%20Android-0078D6?logo=windows" alt="Platform" />
   <img src="https://img.shields.io/badge/.NET-9.0%20%7C%20WPF%20Fluent-512BD4?logo=dotnet" alt="Framework" />
+  <img src="https://img.shields.io/badge/Android-Material%203%20%7C%20JNI-3DDC84?logo=android" alt="Android" />
   <img src="https://img.shields.io/badge/ggml-Vulkan%20GPU%20%7C%20CPU-red?logo=vulkan" alt="Backend" />
   <img src="https://img.shields.io/badge/Model-ViT--B%2F16%20GGUF-orange" alt="Model" />
   <img src="https://img.shields.io/badge/GUI%20Size-1.4%20MB-brightgreen" alt="GUI Size" />
@@ -16,7 +17,7 @@
 A high-performance, ultra-lightweight, 100% offline local tool for **NSFW image detection and automatic quarantine**.  
 Powered by the `Falconsai/nsfw_image_detection` (ViT-B/16 architecture) quantized GGUF model via the `ggml` Vulkan hardware acceleration backend (compatible with NVIDIA, AMD, and Intel GPUs, with automatic CPU fallback). It performs batch image audits in milliseconds and automatically moves detected NSFW images into a designated quarantine directory.
 
-Includes an **ultra-lightweight Windows 11 Fluent desktop GUI (standalone single-file executable of just 1.4 MB)** and a **formatted C++ command-line interface (CLI)**. 100% offline privacy guarantee with zero internet communication.
+Includes an **ultra-lightweight Windows 11 Fluent desktop GUI (standalone single-file executable of just 1.4 MB)**, a **formatted C++ command-line interface (CLI)**, and a **native Android app (Material Design 3 + on-device `ggml` CPU inference)**. 100% offline privacy guarantee with zero image uploads.
 
 ---
 
@@ -37,6 +38,11 @@ Includes an **ultra-lightweight Windows 11 Fluent desktop GUI (standalone single
   - Structured English log tags (`[INIT]`, `[ITEM]`, `[PROGRESS]`, `[ACTION]`, `[SUMMARY]`).
   - Optional `--json` flag for machine-readable NDJSON streaming with proper Windows path escaping.
   - Real-time `fflush(stdout)` preventing pipe buffering latency.
+- 📱 **Native Android App ([`android/`](android/README.md))**:
+  - Built with **Material Design 3** (automatic light/dark theme & **one-tap EN/ZH language switch**).
+  - Statically links `ggml-cpu` via NDK/JNI for pure on-device offline inference (`arm64-v8a` / `x86_64`).
+  - Supports **batch folder scanning** via SAF `OpenDocumentTree`, displaying results in a **2-column thumbnail grid** with **Safe / NSFW category tabs**, and prompts to quarantine detected NSFW images into the app's private internal directory after scanning finishes.
+  - Supports resumable GGUF model download or local `.gguf` import with SHA256 verification and live threshold adjustment (auto-hidden during scans).
 - 🛡️ **Safe Quarantine Pipeline**:
   - Automatically isolates NSFW images into the `NSFW/` folder.
   - Automatic collision resolution: never overwrites existing files (appends `(1)`, `(2)`, etc.).
@@ -66,6 +72,10 @@ NSFWImageDetectionGGUF/
 │   ├── ggml/                   # ggml tensor library (Vulkan / CPU backends)
 │   ├── CMakeLists.txt          # CMake project definition
 │   └── nsfw_audit.cpp          # Engine source with formatted tags and NDJSON output
+├── android/                    # Native Android client (Kotlin + Material Design 3 + JNI/ggml)
+│   ├── app/src/main/cpp/       # Android JNI & C++ inference wrapper (reusing _nsfw_tool/ggml)
+│   ├── app/src/main/java/      # Kotlin UI & SAF folder batch scanner
+│   └── README.md               # Android documentation
 ├── image-test/                 # Test images directory
 ├── nsfw_audit.py               # Python reference prototype
 ├── launch_gui.bat              # One-click launcher script
@@ -182,6 +192,18 @@ cd /d %~dp0
 dotnet publish NsfwAuditGui\NsfwAuditGui.csproj -c Release -r win-x64 --self-contained false -p:PublishSingleFile=true -o publish
 ```
 The output executable will be created at `publish\NsfwAuditGui.exe` (only **~1.4 MB**).
+
+### 3. Build Android Client
+
+```bash
+cd android
+.\gradlew.bat :app:assembleDebug
+```
+Requires Android SDK and NDK (`arm64-v8a` / `x86_64`). See [android/README.md](android/README.md) for details.
+
+<p align="center">
+  <img src="android/screenshots/app_preview.png" width="320" alt="Android App Preview" />
+</p>
 
 ---
 

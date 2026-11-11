@@ -1,0 +1,78 @@
+<resources>
+    <string name="app_name">NSFWImageDetectionGGUF</string>
+    <string name="toolbar_title">NSFW 图片检测</string>
+    <string name="toolbar_subtitle">本地 GGUF 离线推理</string>
+    <string name="action_language">中 / EN</string>
+
+    <string name="label_model_status">模型状态</string>
+    <string name="status_checking_model">检查模型中…</string>
+    <string name="status_incomplete_download">模型下载未完成，可点击“继续下载”续传</string>
+    <string name="status_model_missing">未找到模型，请先下载（约 327MB）或本地导入</string>
+    <string name="status_need_model">请先下载或导入模型</string>
+    <string name="status_loading_model">正在加载模型…</string>
+    <string name="status_model_ready">模型已就绪 · 后端 %1$s · 线程 %2$d</string>
+    <string name="status_model_load_failed">模型加载失败：%1$s</string>
+
+    <string name="btn_download">下载模型</string>
+    <string name="btn_resume_download">继续下载</string>
+    <string name="btn_stop_download">停止下载</string>
+    <string name="btn_import">本地导入</string>
+    <string name="btn_pick_folder">选择图片文件夹检测</string>
+
+    <string name="status_stopping_download">正在停止下载…</string>
+    <string name="dialog_cellular_title">当前为移动网络</string>
+    <string name="dialog_cellular_message">模型约 327MB，建议在 Wi-Fi 下下载。仍要继续吗？</string>
+    <string name="dialog_continue">继续</string>
+    <string name="dialog_cancel">取消</string>
+
+    <string name="status_downloading">正在下载模型…</string>
+    <string name="progress_connecting">正在连接…</string>
+    <string name="status_download_failed">下载失败：%1$s</string>
+    <string name="status_retrying">网络中断，正在重试（%1$d/%2$d）…</string>
+    <string name="status_download_paused">下载已暂停</string>
+    <string name="progress_paused_mb">已暂停 %1$d MB · 再次点击按钮可继续下载</string>
+    <string name="progress_downloaded_mb">已下载 %1$d MB</string>
+    <string name="progress_verifying_sha256">正在校验 SHA256…</string>
+    <string name="progress_percent_mb">%1$d%%  (%2$d / %3$d MB)</string>
+    <string name="progress_mb_only">%1$d MB</string>
+
+    <string name="error_incomplete_file">下载文件不完整</string>
+    <string name="status_verifying_model">正在校验模型…</string>
+    <string name="error_sha256_mismatch">SHA256 校验失败，请重试</string>
+    <string name="error_save_failed">模型保存失败</string>
+    <string name="error_connection_interrupted">连接中断</string>
+
+    <string name="toast_only_gguf">仅支持 .gguf 模型文件</string>
+    <string name="status_importing_model">正在导入模型…</string>
+    <string name="error_cannot_read_file">无法读取所选文件</string>
+    <string name="error_not_gguf">所选文件不是 GGUF 模型</string>
+    <string name="error_file_too_small">文件过小，不是有效的模型文件</string>
+    <string name="error_import_sha256_mismatch">SHA256 校验失败，所选文件与发布模型不一致</string>
+    <string name="status_import_failed">导入失败：%1$s</string>
+
+    <string name="label_threshold">判定阈值：%1$.2f</string>
+    <string name="status_scanning_folder">正在扫描文件夹…</string>
+    <string name="status_no_images_found">所选文件夹中未找到图片</string>
+    <string name="status_scoring_progress">正在识别 %1$d/%2$d：%3$s</string>
+    <string name="status_scoring_done">识别完成，共 %1$d 张</string>
+    <string name="summary_format">共 %1$d 张 · NSFW %2$d 张 · 阈值 %3$.2f</string>
+
+    <string name="tab_safe">安全 (%1$d)</string>
+    <string name="tab_nsfw">NSFW (%1$d)</string>
+    <string name="badge_safe">安全</string>
+    <string name="badge_nsfw">NSFW</string>
+    <string name="badge_failed">失败</string>
+    <string name="badge_moved">已隔离</string>
+
+    <string name="empty_title">暂无检测结果</string>
+    <string name="empty_subtitle">选择一个图片文件夹即可在本地批量检测</string>
+    <string name="empty_category">当前分类下暂无图片</string>
+
+    <string name="dialog_move_title">移动 NSFW 图片？</string>
+    <string name="dialog_move_message">共检测到 %1$d 张 NSFW 图片，是否将它们移动到软件内部私有目录？原文件夹中的对应图片将被移除。</string>
+    <string name="dialog_move_confirm">确定移动</string>
+    <string name="status_moving_nsfw">正在移动 NSFW 图片（%1$d/%2$d）…</string>
+    <string name="status_move_done">已将 %1$d 张 NSFW 图片移动到软件内部目录</string>
+    <string name="status_move_partial">已移动 %1$d 张，失败 %2$d 张</string>
+</resources>
+
